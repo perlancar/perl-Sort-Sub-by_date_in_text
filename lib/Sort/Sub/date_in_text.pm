@@ -7,10 +7,9 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Date::Extract;
 use DateTime;
 
-my $parser = Date::Extract->new;
+our $DATE_EXTRACT_MODULE = $ENV{PERL_DATE_EXTRACT_MODULE} // "Date::Extract";
 
 sub gen_sorter {
     my ($is_reverse, $is_ci) = @_;
@@ -20,6 +19,12 @@ sub gen_sorter {
                        (?:\d+|\d*(?:\.\d*)?)
                        (?:[Ee][+-]?\d+)?
                        \z/x;
+
+    my $module = $DATE_EXTRACT_MODULE;
+    $module = "Date::Extract::$module" unless $module =~ /::/;
+    die "Invalid module '$module'" unless $module =~ /\A\w+(::\w+)*\z/;
+    eval "use $module"; die if $@;
+    my $parser = $module->new;
 
     sub {
         no strict 'refs';
@@ -68,5 +73,13 @@ sub gen_sorter {
 The generated sort routine will sort by date found in text (extracted using
 L<Date::Extract>) or (f no date is found in text) ascibetically. Items that have
 a date will sort before items that do not.
+
+
+=head1 ENVIRONMENT
+
+=head2 PERL_DATE_EXTRACT_MODULE => str
+
+Set Date::Extract module to use (the default is L<Date::Extract>).
+
 
 =head1 SEE ALSO
