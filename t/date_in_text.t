@@ -12,16 +12,31 @@ sort_sub_ok(
     input     => [
         'no date',
         'date: 3 Jan 2016',
-        'date: 1 Feb 2016',
-        'date2: 1 Feb 2016',
+        'date : 1 Feb 2016',
+        'Date2: 1 Feb 2016',
         'date: 2 Dec 1999',
     ],
+
     output    => [
         'date: 2 Dec 1999',
         'date: 3 Jan 2016',
-        'date: 1 Feb 2016',
-        'date2: 1 Feb 2016',
+        'Date2: 1 Feb 2016',
+        'date : 1 Feb 2016',
         'no date',
+    ],
+    output_i   => [
+        'date: 2 Dec 1999',
+        'date: 3 Jan 2016',
+        'date : 1 Feb 2016',
+        'Date2: 1 Feb 2016',
+        'no date',
+    ],
+    output_ir   => [
+        'no date',
+        'Date2: 1 Feb 2016',
+        'date : 1 Feb 2016',
+        'date: 3 Jan 2016',
+        'date: 2 Dec 1999',
     ],
 );
 

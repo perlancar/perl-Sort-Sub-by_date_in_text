@@ -3,7 +3,7 @@ package Sort::Sub::date_in_text;
 # DATE
 # VERSION
 
-use 5.010;
+use 5.010001;
 use strict;
 use warnings;
 
@@ -37,7 +37,7 @@ sub gen_sorter {
 
         {
             if ($dt_a && $dt_b) {
-                $cmp = DateTime->compare($dt1, $dt2);
+                $cmp = DateTime->compare($dt_a, $dt_b);
                 last if $cmp;
             } elsif ($dt_a && !$dt_b) {
                 $cmp = -1;
@@ -47,7 +47,7 @@ sub gen_sorter {
                 last;
             }
 
-            if ($ci) {
+            if ($is_ci) {
                 $cmp = lc($a) cmp lc($b);
             } else {
                 $cmp = $a cmp $b;
