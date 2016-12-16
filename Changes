@@ -1,5 +1,10 @@
 Revision history for Sort-Sub-date_in_text
 
+0.003   2016-12-16 (PERLANCAR)
+
+	- Add debugging message on DEBUG.
+
+
 0.002   2016-04-06 (PERLANCAR)
 
 	- Allow customizing which Date::Extract module to use (via
