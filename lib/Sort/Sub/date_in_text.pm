@@ -38,7 +38,9 @@ sub gen_sorter {
         # XXX cache
 
         my $dt_a = $parser->extract($a);
+        warn "Found date $dt_a in $a\n" if $ENV{DEBUG} && $dt_a;
         my $dt_b = $parser->extract($b);
+        warn "Found date $dt_b in $b\n" if $ENV{DEBUG} && $dt_b;
 
         {
             if ($dt_a && $dt_b) {
@@ -76,6 +78,10 @@ a date will sort before items that do not.
 
 
 =head1 ENVIRONMENT
+
+=head2 DEBUG => bool
+
+If set to true, will print stuffs to stderr.
 
 =head2 PERL_DATE_EXTRACT_MODULE => str
 
