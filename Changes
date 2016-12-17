@@ -1,5 +1,12 @@
 Revision history for Sort-Sub-date_in_text
 
+0.005   2016-12-17 (PERLANCAR)
+
+	- No functional changes.
+
+        - [dist] Rebuild with update Pod::Weaver::Plugin::Sort::Sub.
+
+
 0.004   2016-12-17 (PERLANCAR)
 
 	- No functional changes.
