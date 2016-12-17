@@ -86,6 +86,3 @@ If set to true, will print stuffs to stderr.
 =head2 PERL_DATE_EXTRACT_MODULE => str
 
 Set Date::Extract module to use (the default is L<Date::Extract>).
-
-
-=head1 SEE ALSO
