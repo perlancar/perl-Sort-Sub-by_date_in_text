@@ -1,5 +1,13 @@
 Revision history for Sort-Sub-by_date_in_text
 
+0.007   2016-12-18 (PERLANCAR)
+
+	- No functional changes.
+
+	- [Incompatible change] Rename module to by_* to be consistent with
+	  the convention.
+
+
 0.006   2016-12-18 (PERLANCAR) (unreleased)
 
         - Rename module/dist from Sort-Sub-{,by_}date_in_text.
