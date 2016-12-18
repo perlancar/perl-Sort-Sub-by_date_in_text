@@ -8,7 +8,7 @@ use Test::More 0.98;
 use Test::Sort::Sub;
 
 sort_sub_ok(
-    subname   => 'date_in_text',
+    subname   => 'by_date_in_text',
     input     => [
         'no date',
         'date: 3 Jan 2016',

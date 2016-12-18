@@ -1,4 +1,4 @@
-package Sort::Sub::date_in_text;
+package Sort::Sub::by_date_in_text;
 
 # DATE
 # VERSION
