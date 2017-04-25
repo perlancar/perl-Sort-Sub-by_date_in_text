@@ -20,11 +20,29 @@ sub gen_sorter {
                        (?:[Ee][+-]?\d+)?
                        \z/x;
 
+    my ($parser, $code_parse);
     my $module = $DATE_EXTRACT_MODULE;
     $module = "Date::Extract::$module" unless $module =~ /::/;
-    die "Invalid module '$module'" unless $module =~ /\A\w+(::\w+)*\z/;
+    if ($module eq 'Date::Extract') {
+        require Date::Extract;
+        $parser = Date::Extract->new();
+        $code_parse = sub { $parser->parse($_[0]) };
+    } elsif ($module eq 'Date::Extract::ID') {
+        require Date::Extract::ID;
+        $parser = Date::Extract::ID->new();
+        $code_parse = sub { $parser->parse($_[0]) };
+    } elsif ($module eq 'DateTime::Format::Alami::EN') {
+        require DateTime::Format::Alami::EN;
+        $parser = DateTime::Format::Alami::EN->new();
+        $code_parse = sub { my $h; eval { $h = $parser->parse_datetime($_[0]) }; $h };
+    } elsif ($module eq 'DateTime::Format::Alami::ID') {
+        require DateTime::Format::Alami::ID;
+        $parser = DateTime::Format::Alami::ID->new();
+        $code_parse = sub { my $h; eval { $h = $parser->parse_datetime($_[0]) }; $h };
+    } else {
+        die "Invalid date extract module '$module'";
+    }
     eval "use $module"; die if $@;
-    my $parser = $module->new;
 
     sub {
         no strict 'refs';
@@ -37,9 +55,9 @@ sub gen_sorter {
 
         # XXX cache
 
-        my $dt_a = $parser->extract($a);
+        my $dt_a = $code_parse->($a);
         warn "Found date $dt_a in $a\n" if $ENV{DEBUG} && $dt_a;
-        my $dt_b = $parser->extract($b);
+        my $dt_b = $code_parse->($b);
         warn "Found date $dt_b in $b\n" if $ENV{DEBUG} && $dt_b;
 
         {
@@ -85,4 +103,5 @@ If set to true, will print stuffs to stderr.
 
 =head2 PERL_DATE_EXTRACT_MODULE => str
 
-Set Date::Extract module to use (the default is L<Date::Extract>).
+Can be set to L<Date::Extract>, L<Date::Extract::ID>, or
+L<DateTime::Format::Alami::EN>, L<DateTime::Format::Alami::ID>.
