@@ -26,11 +26,11 @@ sub gen_sorter {
     if ($module eq 'Date::Extract') {
         require Date::Extract;
         $parser = Date::Extract->new();
-        $code_parse = sub { $parser->parse($_[0]) };
+        $code_parse = sub { $parser->extract($_[0]) };
     } elsif ($module eq 'Date::Extract::ID') {
         require Date::Extract::ID;
         $parser = Date::Extract::ID->new();
-        $code_parse = sub { $parser->parse($_[0]) };
+        $code_parse = sub { $parser->extract($_[0]) };
     } elsif ($module eq 'DateTime::Format::Alami::EN') {
         require DateTime::Format::Alami::EN;
         $parser = DateTime::Format::Alami::EN->new();
