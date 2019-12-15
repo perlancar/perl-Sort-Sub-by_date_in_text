@@ -1,6 +1,8 @@
 package Sort::Sub::by_date_in_text;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 use 5.010001;
@@ -10,6 +12,13 @@ use warnings;
 use DateTime;
 
 our $DATE_EXTRACT_MODULE = $ENV{PERL_DATE_EXTRACT_MODULE} // "Date::Extract";
+
+sub meta {
+    return {
+        v => 1,
+        summary => 'Sort by date found in text or (if no date is found) ascibetically',
+    };
+}
 
 sub gen_sorter {
     my ($is_reverse, $is_ci) = @_;
@@ -84,9 +93,9 @@ sub gen_sorter {
 }
 
 1;
-# ABSTRACT: Sort by date found in text or (if no date is found) ascibetically
+# ABSTRACT:
 
-=for Pod::Coverage ^(gen_sorter)$
+=for Pod::Coverage ^(gen_sorter|meta)$
 
 =head1 DESCRIPTION
 
