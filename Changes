@@ -16,7 +16,7 @@
 	  the convention.
 
 
-0.006   2016-12-18 (PERLANCAR)  Released-By: unreleased
+0.006   2016-12-18  Released-By: PERLANCAR; Released: no
 
         - Rename module/dist from Sort-Sub-{,by_}date_in_text.
 
@@ -50,3 +50,4 @@
 0.001   2016-04-06  Released-By: PERLANCAR
 
         - First release.
+
